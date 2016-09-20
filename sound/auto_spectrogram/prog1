@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#	Choose audio folder
+#audiofolder='../batsamples/*'
+audiofolder='../test/*'
+
+#	Iterate over the audio folder
+
+for filename in $audiofolder
+do
+	#printf "Create raw spectrogram data from audio file: $filename \n"	
+	new_filename="$(echo $filename | cut -f3 -d"." | cut -f3 -d"/" )"
+
+	#sox $filename -n remix 1,2,3,4 rate 200k spectrogram -X 1000 -Y 1000 -r -O "full/"$new_filename""
+	#	add high pass -- AA 
+	sox $filename -n remix 1 rate 200k spectrogram -X 100 -Y 1000 -r -O "../raw/"$new_filename""
+	echo "../raw/"$new_filename""
+done
+
+
