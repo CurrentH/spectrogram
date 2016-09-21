@@ -12,7 +12,7 @@ while true
 do
 	read filename
 
-	sound_filename=$(echo $filename | sed 's/raw/test/g')
+	sound_filename=$(echo $filename | sed 's/raw/whalesamples/g')
 	sound_filename=$sound_filename".wav"
 	output_filename=$(echo $filename | sed 's/raw/partial/g')	
 
