@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#	A continious program.
+#	The first input will be the filename to make spectrograms of.
+#	the new specific spectrograms needs to be made at.
+
+#	Duration of the small spectrograms made.
+#	Perhaps try editing the -X variable.
+duration=0.15
+
+while true
+do
+	read filename
+
+	sound_filename=$(echo $filename | sed 's/raw/whalesamples/g')
+	sound_filename=$sound_filename".wav"
+	output_filename=$(echo $filename | sed 's/raw/partial/g')	
+
+	while read line
+	do
+		if [ "$line" = "done" ]; then
+			break;	
+		fi
+		line=$((line-5))
+		output_file=$output_filename"_"$line".png"
+		spike=$(echo $(bc -l <<< $line/100))
+
+		sox $sound_filename -n remix 1 rate 200k spectrogram -X 1000 -Y 1000 -S $spike -d $duration -r -o $output_file
+	done
+
+	echo "All partial spectrograms for: " $sound_filename " is done"
+done
+

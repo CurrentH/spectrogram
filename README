@@ -1,0 +1,14 @@
+#	To get this program working we need to patch sox.
+#	https://sourceforge.net/p/sox/mailman/message/34779977/
+#	The patch is attached to the message.
+#
+#	The source code for Sox can be found at
+#	http://sox.sourceforge.net/
+#	
+#	There have been made a few changes to the INSTALL file 
+#	that follows the source code when compiling sox.
+#	Its mainly for easier use. The 'new' INSTALL file
+#	lies on the master branch of this repository,
+#	in the /src/ folder.
+
+
