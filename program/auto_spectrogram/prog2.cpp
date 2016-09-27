@@ -104,7 +104,7 @@ int main( int argc, char **argv ){
 			/**
 			*	To find the treshold we use the following:
 			*/
-			if( false ){
+			if( true ){
 				std::sort( arr, arr+width );
 				for( int i = 0; i< width; i++ ){
 					std::cout << arr[i] << std::endl;
@@ -112,7 +112,7 @@ int main( int argc, char **argv ){
 			}
 
 			int tresUpper = -24000;
-			int tresLower = -41000;
+			int tresLower = -50000;
 
 			/**
 			 *	Start the output sequence.
@@ -131,6 +131,7 @@ int main( int argc, char **argv ){
 						std::cout << i << std::endl;
 					}
 				}
+				if( i > 10 && false ){break;}
 			}
 
 			std::cout << "done" << std::endl;

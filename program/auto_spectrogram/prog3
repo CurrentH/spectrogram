@@ -6,7 +6,7 @@
 
 #	Duration of the small spectrograms made.
 #	Perhaps try editing the -X variable.
-duration=0.15
+duration=5.00
 
 while true
 do
@@ -18,6 +18,7 @@ do
 
 	while read line
 	do
+		echo "I got from prog2:" $line
 		if [ "$line" = "done" ]; then
 			break;	
 		fi
@@ -25,7 +26,7 @@ do
 		output_file=$output_filename"_"$line".png"
 		spike=$(echo $(bc -l <<< $line/100))
 
-		sox $sound_filename -n remix 1 rate 200k spectrogram -X 1000 -Y 1000 -S $spike -d $duration -r -o $output_file
+		sox $sound_filename -n spectrogram -X 1000 -Y 1000 -S $spike -d $duration -r -o $output_file
 	done
 
 	echo "All partial spectrograms for: " $sound_filename " is done"
