@@ -104,7 +104,7 @@ int main( int argc, char **argv ){
 			/**
 			*	To find the treshold we use the following:
 			*/
-			if( true ){
+			if( false ){
 				std::sort( arr, arr+width );
 				for( int i = 0; i< width; i++ ){
 					std::cout << arr[i] << std::endl;
@@ -121,21 +121,24 @@ int main( int argc, char **argv ){
 			 *	EOF
 			 */
 
+			long long  totalValue = 0;
 			std::cout << filename << std::endl;
 
 			for( int i = 0; i < width; i++ ){
+				totalValue += arr[i];
+				if( true && i>1 ){ std::cout << i << " " << arr[i] << " " << arr[i]-arr[i-1] << std::endl; }
 				if( arr[i] < tresUpper && arr[i] > tresLower ){
 					if( arr[i-1] < tresLower ){
 						spike.push_back(arr[i]);
 						count++;
-						std::cout << i << std::endl;
+						//std::cout << i << std::endl;
+
 					}
 				}
-				if( i > 10 && false ){break;}
 			}
 
 			std::cout << "done" << std::endl;
-			if( DEBUG ){ std::cout << "DONE - " << count << std::endl; }
+			if( true ){ std::cout << "DONE - " << count << " " << totalValue << std::endl; }
 		}
 	}
 
