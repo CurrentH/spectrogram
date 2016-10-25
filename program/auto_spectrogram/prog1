@@ -13,8 +13,14 @@ do
 	#echo "../raw/"$new_filename"_1"
 	#sox $filename -n remix 2 lowpass 0.5k rate 4k spectrogram -X 1 -Y 1000 -r -O "../raw/"$new_filename"_2"
 	#echo "../raw/"$new_filename"_2"
-	sox $filename -n remix 1,2 lowpass 0.5k rate 4k spectrogram -X 10 -Y 1000 -r -O "../raw/"$new_filename
+	#sox $filename -n remix 1,2 lowpass 0.5k rate 4k spectrogram -X 10 -Y 1000 -r -O "../raw/"$new_filename
+	#echo "../raw/"$new_filename
+
+	#	Do spectrograms of the files - test
+	sox $filename -n lowpass 0.1k rate 4k spectrogram -X 10 -Y 1000 -r -O "../raw/"$new_filename
 	echo "../raw/"$new_filename
+	
+
 done
 
 
