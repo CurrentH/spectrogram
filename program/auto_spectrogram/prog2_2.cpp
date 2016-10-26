@@ -103,34 +103,33 @@ int main( int argc, char **argv ){
 
 			/**
 			*	We try to normalize the data. Since the data doesn't seem to be recorded with the same equipment.
+			*	And then we try to find the treshold we use the following.
 			*/
-			double max = arr[0];
-			double min = arr[0];
-			double norm_arr[width];
+			double sortArr[width];
+			std::copy( arr, arr+width, sortArr );
+			std::sort( sortArr, sortArr+width );
 
+
+			double min = sortArr[0];
+			double max = sortArr[width-1];
+
+
+			double normArr[width];
+			std::cout << "Test: " << min << " " << max << std::endl;
 			for( int i = 0; i < width; i++ ){
-				if( arr[i] > max ) max = arr[i];
-				else if( arr[i] < min ) min = arr[i];
-			}
-			std::cout << "test: " << max << " " << min << std::endl;
-
-			for( int i = 0; i < width; i++ ){
-				norm_arr[i] = ( arr[i] - min) / ( max - min );
-				std::cout << i << ": " << arr[i] << "\t" << norm_arr[i] << std::endl;
-				
-			}
-			
-
-
-			/**
-			*	To find the treshold we use the following:
-			*/
-			if( true ){
-				std::sort( arr, arr+width );
-				for( int i = 0; i< width; i++ ){
-					//std::cout << arr[i] << std::endl;
+				if( std::isnan(arr[i]) ){
+					normArr[i] = -1;
+				}else{
+					normArr[i] = ( arr[i] - min) / ( max - min );
 				}
+				std::cout << i << ": " << arr[i] << "\t" << normArr[i];
+				if( std::isnan(arr[i]) ){
+                                        std::cout << " - is NaN" << std::endl;
+                                }else{
+                                        std::cout << std::endl;
+                                }
 			}
+
 
 			int tresUpper = -24000;
 			int tresLower = -50000;
@@ -152,13 +151,14 @@ int main( int argc, char **argv ){
 					if( arr[i-1] < tresLower ){
 						spike.push_back(arr[i]);
 						count++;
-						//std::cout << i << std::endl;
+						std::cout << i << std::endl;
 
 					}
 				}
 			}
 
 			std::cout << "done" << std::endl;
+			std::cout << std::endl;
 			if( false ){ std::cout << "DONE - " << count << " " << totalValue << std::endl; }
 		}
 	}
