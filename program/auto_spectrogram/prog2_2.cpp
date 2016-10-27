@@ -130,6 +130,33 @@ int main( int argc, char **argv ){
                                 }
 			}
 
+			/**
+			*	Make a GNUPLOT of the normalized data
+			*/
+			if( true ){
+				Gnuplot gp;
+
+				std::vector< std::pair<double,double> > xy_normalized;
+				for( int i = 0; i < width; i++ ){
+					double y = normArr[i];
+					double x = width/10;
+				}
+				
+				std::stringstream ss;
+				ss << int(width/10)+1
+				std::string str = ss.str();
+
+				std::cout << "test test: " << str << std::endl;
+
+				gp << "set xrange [0:10]\nset yrange [0:1]\n";
+				// '-' means read from stdin.  The send1d() function sends data to gnuplot's stdin.
+				gp << "plot '-' with lines title 'data'\n";
+				gp.send1d(xy_pts_A);
+
+				//	Wait
+				std::cin.get();
+			}
+
 
 			int tresUpper = -24000;
 			int tresLower = -50000;
